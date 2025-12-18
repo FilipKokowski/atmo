@@ -1,0 +1,163 @@
+/* --- BAZA --- */
+#rootPane {
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.theme-clouds { -fx-background-image: url("chmurki.jpg"); }
+.theme-clouds2  { -fx-background-image: url("chmurki2.jpg"); }
+.theme-clouds3    { -fx-background-image: url("chmurki3.jpg"); }
+.theme-cr    { -fx-background-image: url("chmurki4.jpg"); }
+
+/* --- TEKSTY --- */
+.city-name {
+    -fx-font-size: 38px;
+    -fx-font-weight: bold;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 10, 0.0, 0, 2);
+}
+
+.temperature {
+    -fx-font-size: 96px;
+    -fx-font-weight: 100;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 15, 0.0, 0, 3);
+}
+
+.description, .high-low {
+    -fx-font-size: 20px;
+    -fx-text-fill: white;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.6), 10, 0.0, 0, 2);
+}
+
+/* --- KONTENERY (Szkło) --- */
+.info-module {
+    -fx-background-color: rgba(40, 40, 40, 0.4);
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: rgba(255, 255, 255, 0.15);
+    -fx-padding: 15px;
+}
+
+.module-title {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: rgba(255, 255, 255, 0.7);
+}
+
+/* --- WYSZUKIWARKA I LISTA --- */
+.search-field {
+    -fx-background-radius: 30;
+    -fx-background-color: rgba(40, 40, 40, 0.5);
+    -fx-text-fill: white;
+    -fx-prompt-text-fill: #ccc;
+    -fx-font-size: 14px;
+}
+
+.theme-combo {
+    -fx-background-color: rgba(40, 40, 40, 0.5); /* Ciemne szkło */
+    -fx-background-radius: 30;
+    -fx-border-radius: 30;
+    -fx-border-color: rgba(255, 255, 255, 0.3);
+    -fx-border-width: 1px;
+}
+
+/* 2. Tekst wewnątrz głównego przycisku (ten widoczny po wyborze) */
+.theme-combo .list-cell {
+    -fx-text-fill: white; /* Biały tekst */
+    -fx-background-color: transparent; /* Tło przezroczyste (żeby widzieć tło rodzica) */
+    -fx-padding: 3px 0 3px 10px; /* Lekka korekta pozycji */
+    -fx-font-size: 14px;
+}
+
+/* 3. Strzałka w dół */
+.theme-combo .arrow-button {
+    -fx-background-color: transparent; /* Ukrywamy tło przycisku strzałki */
+}
+.theme-combo .arrow {
+    -fx-background-color: white; /* Sama strzałka ma być biała */
+    -fx-opacity: 0.7;
+}
+
+/* --- TO JEST SEKCJA ROZWIJANA (POPUP) --- */
+
+/* 4. Tło całej listy po rozwinięciu */
+.theme-combo .list-view {
+    -fx-background-color: rgba(40, 40, 40, 0.85); /* Mocniejsze ciemne szkło dla czytelności */
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+    -fx-border-color: rgba(255, 255, 255, 0.2);
+
+    /* Odsunięcie listy od przycisku */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.0, 0, 5);
+}
+
+/* 5. Pojedyncze elementy na liście (Chmury, Noc, Słońce) */
+.theme-combo .list-view .list-cell {
+    -fx-text-fill: white; /* Tekst na liście też biały */
+    -fx-background-color: transparent; /* Tło przezroczyste */
+    -fx-padding: 10px; /* Większe odstępy dla wygody */
+}
+
+/* 6. Efekt po najechaniu myszką na element listy (HOVER) */
+.theme-combo .list-view .list-cell:filled:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.2); /* Lekkie podświetlenie */
+    -fx-cursor: hand;
+}
+
+/* 7. Wybrany element na liście */
+.theme-combo .list-view .list-cell:filled:selected {
+    -fx-background-color: rgba(255, 255, 255, 0.1); /* Delikatne tło dla aktywnego */
+}
+
+.scroller, .scroller .viewport {
+    min-height: 180px; /* Miejsce na ikony */
+    -fx-background-color: transparent;
+}
+
+/* 1. Pasek poziomy - ustalamy wysokość i widoczność */
+.scroller .scroll-bar:horizontal {
+    -fx-opacity: 1;         /* Pokaż pasek! */
+    -fx-pref-height: 12px;  /* Wysokość paska */
+    -fx-background-color: transparent;
+    -fx-padding: 2px;       /* Margines wewnątrz */
+}
+
+/* 2. Szyna (tło, po którym jeździ pasek) */
+.scroller .scroll-bar:horizontal .track {
+    -fx-background-color: rgba(0, 0, 0, 0.1); /* Bardzo delikatne tło szyny */
+    -fx-background-radius: 10;
+    -fx-border-radius: 10;
+}
+
+/* 3. Suwak (to co chwytasz myszką) */
+.scroller .scroll-bar:horizontal .thumb {
+    -fx-background-color: rgba(255, 255, 255, 0.4); /* Półprzezroczysty biały */
+    -fx-background-radius: 10;
+}
+
+/* 4. Suwak po najechaniu myszką (jaśniejszy) */
+.scroller .scroll-bar:horizontal .thumb:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.7);
+    -fx-cursor: hand;
+}
+
+/* 5. Ukrywamy brzydkie strzałki boczne na pasku */
+.scroller .scroll-bar .increment-button,
+.scroller .scroll-bar .decrement-button {
+    -fx-padding: 0;
+    -fx-pref-width: 0;
+    -fx-opacity: 0;
+}
+
+/* --- KAFELKI --- */
+.forecast-tile {
+    -fx-alignment: center;
+    -fx-min-width: 70px;
+    -fx-pref-height: 120px;
+    -fx-background-color: transparent;
+}
+
+.forecast-time { -fx-text-fill: white; -fx-font-weight: bold; }
+.forecast-temp { -fx-text-fill: white; -fx-font-size: 16px; }
