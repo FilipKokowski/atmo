@@ -14,20 +14,16 @@ import java.util.Objects;
 
 public class HelloController {
 
-    // Główne okno (do zmiany tła)
     @FXML private VBox rootPane;
 
-    // Pola tekstowe i wybór
     @FXML private TextField cityInput;
     @FXML private ComboBox<String> themeSelector;
 
-    // Etykiety
     @FXML private Label cityNameLabel;
     @FXML private Label temperatureLabel;
     @FXML private Label descriptionLabel;
     @FXML private Label highLowLabel;
 
-    // Kontenery na prognozy
     @FXML private HBox hourlyContainer;
     @FXML private HBox dailyContainer;
 
@@ -73,20 +69,17 @@ public class HelloController {
     private void loadWeatherDataForCity(String cityName) {
         new Thread(() -> {
             try {
-                // 1. Pobieramy współrzędne ORAZ oficjalną nazwę
                 WeatherService.Coordinates coords = weatherService.getCoordinatesForCity(cityName);
 
                 if (coords == null) {
                     Platform.runLater(() -> {
                         cityNameLabel.setText("Nie znaleziono");
-                        // ... reszta obsługi błędu ...
                     });
                     return;
                 }
 
-                // 2. Pobieramy pogodę, ale przekazujemy OFICJALNĄ nazwę z coords
                 WeatherService.WeatherData data = weatherService.getWeatherData(
-                        coords.locationName(), // <--- ZMIANA TUTAJ (było cityName)
+                        coords.locationName(),
                         String.valueOf(coords.latitude()),
                         String.valueOf(coords.longitude())
                 );
@@ -128,7 +121,7 @@ public class HelloController {
 
         ImageView icon = new ImageView();
         try {
-            String path = "/org/atmo/atmo/" + iconName; // Pełna ścieżka dla pewności
+            String path = "/org/atmo/atmo/" + iconName;
             if (getClass().getResource(iconName) != null) {
                 icon.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(iconName))));
             } else {
