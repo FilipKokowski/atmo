@@ -45,11 +45,6 @@ public enum WeatherCondition {
     }
 
     public static WeatherCondition fromCode(int code) {
-        for (WeatherCondition condition : values()) {
-            if (condition.code == code) {
-                return condition;
-            }
-        }
         if (code >= 51 && code <= 67) return RAIN_MODERATE;
         if (code >= 71 && code <= 77) return SNOW_MODERATE;
         if (code >= 80 && code <= 82) return RAIN_SHOWERS;
