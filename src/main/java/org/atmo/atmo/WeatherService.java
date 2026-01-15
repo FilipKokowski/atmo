@@ -79,7 +79,7 @@ public class WeatherService {
 
         JSONObject root = new JSONObject(response.body());
 
-        System.out.println(root);
+        //System.out.println(root);
 
         JSONObject current = root.getJSONObject("current");
         double currentTemp = current.getDouble("temperature_2m");

@@ -14,6 +14,7 @@ import java.util.Objects;
 public class HelloController {
 
     @FXML private VBox rootPane;
+
     @FXML private TextField cityInput;
     @FXML private ComboBox<String> themeSelector;
     @FXML private ComboBox<String> favoritesSelector;
@@ -110,15 +111,16 @@ public class HelloController {
             try {
                 WeatherService.Coordinates coords = weatherService.getCoordinatesForCity(cityName);
                 if (coords == null) {
-                    Platform.runLater(() -> cityNameLabel.setText("Nie znaleziono"));
+                    Platform.runLater(() -> {
+                        cityNameLabel.setText("Nie znaleziono");
+                    });
                     return;
                 }
 
-                String rawName = coords.locationName().contains(" (") ?
-                        coords.locationName().split(" \\(")[0].trim() : coords.locationName().trim();
-
                 WeatherService.WeatherData data = weatherService.getWeatherData(
-                        coords.locationName(), String.valueOf(coords.latitude()), String.valueOf(coords.longitude())
+                        coords.locationName(),
+                        String.valueOf(coords.latitude()),
+                        String.valueOf(coords.longitude())
                 );
 
                 Platform.runLater(() -> {
@@ -164,14 +166,15 @@ public class HelloController {
 
         ImageView iv = new ImageView();
         try {
-            iv.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(iconName))));
-            iv.setFitWidth(40);
-            iv.setFitHeight(40);
-        } catch (Exception e) {
-            try {
-                iv.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("cloud.png"))));
-            } catch (Exception ex) {}
-        }
+            String path = "/org/atmo/atmo/" + iconName;
+            if (getClass().getResource(iconName) != null) {
+                icon.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream(iconName))));
+            } else {
+                icon.setImage(new Image(Objects.requireNonNull(getClass().getResourceAsStream("cloud.png"))));
+            }
+            icon.setFitWidth(40);
+            icon.setFitHeight(40);
+        } catch (Exception e) {}
 
         Label tempLabel = new Label(temp);
         tempLabel.getStyleClass().add("forecast-temp");
