@@ -205,3 +205,14 @@ void addCityToFavorites() {
     assertTrue(manager.isFavorite("TestCity"));
 }
 ```
+
+## 8. Wnioski
+
+Projekt "Atmo" realizuje założenia aplikacji okienkowej w technologii JavaFX. Kod źródłowy potwierdza spełnienie wszystkich wymagań.
+
+1.  **Programowanie Obiektowe:** Aplikacja posiada modularną strukturę. Wykorzystano hermetyzację, dziedziczenie oraz polimorfizm.
+2.  **Wzorce Projektowe:** Zaimplementowano wzorzec Singleton w klasie `FavoritesManager` do zarządzania stanem aplikacji oraz metodę wytwórczą w `WeatherCondition` do mapowania danych z API.
+3.  **Jakość kodu:** Zastosowano nowoczesne funkcje Javy (Records, Switch Expressions, HttpClient), co zwiększa czytelność i redukuje długość kodu.
+4.  **Testowanie:** Kluczowa logika (zarządzanie ulubionymi, mapowanie pogody) została pokryta testami jednostkowymi przy użyciu frameworka JUnit 5.
+
+Aplikacja działa stabilnie, wykorzystuje wielowątkowość do operacji sieciowych i poprawnie oddziela warstwę logiczną od interfejsu użytkownika.
