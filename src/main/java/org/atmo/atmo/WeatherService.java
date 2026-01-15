@@ -53,13 +53,12 @@ public class WeatherService {
         double latitude = firstResult.getDouble("latitude");
         double longitude = firstResult.getDouble("longitude");
 
-        // --- NOWOŚĆ: Pobieramy prawdziwą nazwę i kraj ---
         String name = firstResult.getString("name");
-        String country = firstResult.optString("country", ""); // optString nie wywali błędu jak kraju braknie
+        String country = firstResult.optString("country", "");
 
         String fullName = name;
         if (!country.isEmpty()) {
-            fullName += " (" + country + ")"; // Np. "Warszawa (Polska)"
+            fullName += " (" + country + ")";
         }
 
         return new Coordinates(latitude, longitude, fullName);

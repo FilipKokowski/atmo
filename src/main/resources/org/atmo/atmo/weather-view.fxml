@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<VBox fx:id="rootPane" alignment="top_center" spacing="10.0"
+<VBox fx:id="rootPane" alignment="TOP_CENTER" spacing="10.0" prefWidth="450.0" prefHeight="735.0"
       xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="org.atmo.atmo.HelloController">
 
@@ -16,48 +17,38 @@
     </padding>
 
     <HBox alignment="CENTER" spacing="10.0">
-
-        <TextField fx:id="cityInput"
-                   prefWidth="200.0"
-                   promptText="Wpisz nazwę miasta..."
-                   styleClass="search-field"
-                   onAction="#handleSearch" />
-
-        <javafx.scene.control.ComboBox fx:id="themeSelector"
-                                       prefWidth="120.0"
-                                       promptText="Motyw"
-                                       styleClass="theme-combo"/>
-
+        <TextField fx:id="cityInput" prefWidth="150.0" promptText="Szukaj..." onAction="#handleSearch" styleClass="search-field" />
+        <ComboBox fx:id="favoritesSelector" prefWidth="120.0" promptText="Ulubione" styleClass="theme-combo" />
+        <ComboBox fx:id="themeSelector" prefWidth="100.0" styleClass="theme-combo" />
     </HBox>
 
-    <VBox alignment="center" spacing="5.0">
+    <VBox alignment="CENTER" spacing="5.0">
         <VBox.margin>
             <Insets bottom="20.0" top="10.0" />
         </VBox.margin>
-        <Label fx:id="cityNameLabel" text="Atmo" styleClass="city-name" />
+
+        <HBox alignment="CENTER" spacing="10.0">
+            <Label fx:id="cityNameLabel" text="Atmo" styleClass="city-name" />
+            <Label fx:id="starIcon" text="☆" onMouseClicked="#handleToggleFavorite"
+                   style="-fx-font-size: 30; -fx-cursor: hand; -fx-text-fill: gold;" />
+        </HBox>
+
         <Label fx:id="temperatureLabel" text="--°" styleClass="temperature" />
         <Label fx:id="descriptionLabel" text="Wpisz miasto" styleClass="description" />
         <Label fx:id="highLowLabel" text="--" styleClass="high-low" />
     </VBox>
 
-    <VBox styleClass="info-module" alignment="top_left" spacing="10.0">
+    <VBox styleClass="info-module" spacing="10.0">
         <Label text="Prognoza godzinowa" styleClass="module-title" />
-
-        <ScrollPane fitToHeight="true" vbarPolicy="never" hbarPolicy="as_needed"
-                    styleClass="scroller" prefHeight="120.0" minHeight="120.0">
-            <HBox fx:id="hourlyContainer" spacing="20.0" alignment="center_left">
-            </HBox>
+        <ScrollPane fitToHeight="true" vbarPolicy="NEVER" hbarPolicy="AS_NEEDED" styleClass="scroller" prefHeight="120.0">
+            <HBox fx:id="hourlyContainer" spacing="20.0" alignment="CENTER_LEFT" />
         </ScrollPane>
     </VBox>
 
-    <VBox styleClass="info-module" alignment="top_left" spacing="10.0">
+    <VBox styleClass="info-module" spacing="10.0">
         <Label text="Prognoza 7-dniowa" styleClass="module-title" />
-
-        <ScrollPane fitToHeight="true" vbarPolicy="never" hbarPolicy="as_needed"
-                    styleClass="scroller" prefHeight="120.0" minHeight="120.0">
-            <HBox fx:id="dailyContainer" spacing="20.0" alignment="center_left">
-            </HBox>
+        <ScrollPane fitToHeight="true" vbarPolicy="NEVER" hbarPolicy="AS_NEEDED" styleClass="scroller" prefHeight="120.0">
+            <HBox fx:id="dailyContainer" spacing="20.0" alignment="CENTER_LEFT" />
         </ScrollPane>
     </VBox>
-
 </VBox>
